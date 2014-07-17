@@ -4,7 +4,7 @@
  * Making the variables value to NULL instead of using unset,
  * since Making the value to NULL will free the memory that time itself
  * Require this file at the end of your php file so that space consumed by-
- * all defined variables will be freed
+ * all user defined variables will be freed
  * @author	Sanjay Kumar N S <sanjaykumarns@gmail.com>
  * @date	17-JULY-2014
  */
