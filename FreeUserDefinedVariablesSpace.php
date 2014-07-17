@@ -8,25 +8,14 @@
  * @author	Sanjay Kumar N S <sanjaykumarns@gmail.com>
  * @date	17-JULY-2014
  */
-$ignore 	= array('GLOBALS',
-	        '_FILES',
-	        '_COOKIE',
-	        '_POST',
-	        '_GET', 
-	        '_SERVER',
-	        '_ENV', 
-	        'argv',
-	        'argc',
-	        'ignore');
-
-//$userDefVar 	= 'test value'; //test variable
+$ignore 	= array('GLOBALS', '_FILES', '_COOKIE', '_POST', '_GET', '_SERVER', '_ENV', 'argv', 'argc', 'ignore');
 
 // diff the ignore list as keys after merging any missing ones with the defined list
 $definedVariablesArr = array_diff_key(get_defined_vars() + array_flip($ignore), array_flip($ignore)); //user defined var(s)
 // should be left with the user defined var(s)
 
-//In order to test which all user defined variables exists, uncomment the below line
-//print_r(array_diff_key(get_defined_vars(), array_flip($ignore)));
+//In order to display the amount of memory allocated to PHP before unsetting, uncomment the below line
+//echo "\nBefore:".memory_get_usage()." Bytes\n";
 
 $definedVariablesArr = array_keys($definedVariablesArr); // take keys of the array ie the variable names
 
@@ -35,11 +24,12 @@ foreach($definedVariablesArr AS $var) {
     ${$var} = NULL;
 }
 
+
 // manually unsetting the localscope variables used in theis file
 $definedVariablesArr = NULL; 
 $var                 = NULL;
 
-//In order to test any user defined vars exists after space removal, uncomment the below line
-//print_r(array_diff_key(get_defined_vars() + array_flip($ignore), array_flip($ignore)));
+//In order to display the amount of memory allocated to PHP after unsetting, uncomment the below line
+//echo "After:".memory_get_usage()." Bytes\n";
 
 ?>
